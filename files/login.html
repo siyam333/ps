@@ -6,44 +6,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 
-  <script type="module">
-    
-    import { getAuth } from "firebase/auth";
-
-
-
-
-    // Initialize Firebase
-    
-
-
-    import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in 
-        const user = userCredential.user;
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      });
-  </script>
+  
 </head>
 
 <body>
   <div class="login-page">
     <div class="form">
       <form class="login-form">
-        <input type="text" placeholder="username" />
-        <input type="password" placeholder="password" />
-        <button>login</button>
+        <input type="email" id="user" placeholder="username" />
+        <input type="current-password" id="password" placeholder="password" />
+        <button id="signin">login</button>
         <p class="message">Not registered? <a href="/files/signup.html">Create an account</a></p>
       </form>
     </div>
   </div>
+
+  <script type="module">
+    import {login} from "../firebase.js"
+
+    document.querySelector('#signin').addEventListener('click', login1);
+    function login1(event) {
+        event.preventDefault();
+        let email=document.getElementById("user").value
+        let password=document.getElementById("password").value
+        login(email, password);
+    }
+  </script>
 </body>
 
 </html>
