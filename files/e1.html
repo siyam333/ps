@@ -2,9 +2,23 @@
 <html>
 <head>
     <title>Registration Page</title>
+
+    <script type="module">
+        import {login} from "../common.js"
+        
+        document.getElementById("register").addEventListener("click", verify);
+        function verify(){
+            console.log(login);
+            if(login){
+                alert("You are already logged in");
+            }else{
+                alert("You are not logged in");
+            }
+        }
+    </script>
 </head>
 <body>
     <h1>Welcome to the Registration Page</h1>
-    <button type="button">Register</button>
+    <div id="register">register</div>
 </body>
 </html>
