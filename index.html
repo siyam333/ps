@@ -1,47 +1,70 @@
 <!doctype html>
 <html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>event</title>
+
+  <script>
+    import { initializeApp } from "firebase/app";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyDh_BxjN6RSG7BcxV2cP6jUclmtz1eBdOM",
+      authDomain: "tz24-ae060.firebaseapp.com",
+      projectId: "tz24-ae060",
+      storageBucket: "tz24-ae060.appspot.com",
+      messagingSenderId: "798031507321",
+      appId: "1:798031507321:web:f109ea1fe92af5393909a8",
+      measurementId: "G-2XPXYHETML"
+    };
+
+
+    const app = initializeApp(firebaseConfig);
+  </script>
+</head>
+
+<body>
+
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>event</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 0;
+        overflow-x: hidden;
+      }
+
+      header {
+        height: 3em;
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        left: 1em;
+      }
+
+      .box {
+        width: 10em;
+        height: 10em;
+        background-color: gray;
+        margin: 10px;
+        padding: 0;
+      }
+    </style>
   </head>
+
   <body>
-    <head>
-      <style>
-          body {
-              margin: 0;
-              padding: 0;
-              overflow-x: hidden;
-          }
-          header{
-            height: 3em;
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            left: 1em;
-          }
-          .box {
-              width: 10em;
-              height: 10em;
-              background-color: gray;
-              margin: 10px;
-              padding: 0;
-          }
-      </style>
-  </head>
-  <body>
-      <header> <a href="/files/login.html" target="_parent" rel="noreferrer">login/signup</a> </header>
-      <div class="box"><a href="/files/e1.html">e1</a></div>
-      <div class="box"><a href="">e2</a></div>
-      <div class="box"><a href="">e3</a></div>
-      <div class="box"><a href="">e4</a></div>
+    <header> <a href="/files/login.html" target="_parent" rel="noreferrer">login/signup</a> </header>
+    <div class="box"><a href="/files/e1.html">e1</a></div>
+    <div class="box"><a href="">e2</a></div>
+    <div class="box"><a href="">e3</a></div>
+    <div class="box"><a href="">e4</a></div>
   </body>
-  </body>
-  <!-- The core Firebase JS SDK is always required and must be listed first -->
+</body>
+<!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 <!-- TODO: Add SDKs for Firebase products that you want to use https://firebase.google.com/docs/web/setup#available-libraries -->
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
 <script src="index.js"></script>
-  
+
 </html>

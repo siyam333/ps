@@ -2,40 +2,45 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-  <script type="module">
-    import { initializeApp } from "firebase/app";
-    import { getAuth } from "firebase/auth";
+    <script type="module">
+    
+        import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+        
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed up 
+                const user = userCredential.user;
+                // ...
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // ..
+            });
 
 
-
-
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-
-
-    // Initialize Firebase Authentication and get a reference to the service
-    const auth = getAuth(app);
-  </script>
+    </script>
 </head>
 
 <body>
-  <div class="login-page">
-    <div class="form">
-      <form class="register-form">
-        <input type="text" placeholder="name" />
-        <input type="text" placeholder="email address" />
-        <input type="number" placeholder="Phone number" />
-        <input type="password" placeholder="password" />
-        
-        <button>create</button>
-        <p class="message">Already registered? <a href="./login.html">Sign In</a></p>
-      </form>
+    <div class="login-page">
+        <div class="form">
+            <form class="register-form">
+                <input type="text" placeholder="name" />
+                <input type="text" placeholder="email address" />
+                <input type="number" placeholder="Phone number" />
+                <input type="password" placeholder="password" />
+
+                <button>create</button>
+                <p class="message">Already registered? <a href="./login.html">Sign In</a></p>
+            </form>
+        </div>
     </div>
-  </div>
 </body>
 
 </html>
@@ -44,26 +49,26 @@
 
 
 <style>
-  @import url(https://fonts.googleapis.com/css?family=Roboto:300);
+    @import url(https://fonts.googleapis.com/css?family=Roboto:300);
 
-  .login-page {
-    width: 360px;
-    padding: 8% 0 0;
-    margin: auto;
-  }
+    .login-page {
+        width: 360px;
+        padding: 8% 0 0;
+        margin: auto;
+    }
 
-  .form {
-    position: relative;
-    z-index: 1;
-    background: #FFFFFF;
-    max-width: 360px;
-    margin: 0 auto 100px;
-    padding: 45px;
-    text-align: center;
-    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
-  }
+    .form {
+        position: relative;
+        z-index: 1;
+        background: #FFFFFF;
+        max-width: 360px;
+        margin: 0 auto 100px;
+        padding: 45px;
+        text-align: center;
+        box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    }
 
-  /* .form input {
+    /* .form input {
     font-family: "Roboto", sans-serif;
     outline: 0;
     background: #f2f2f2;
@@ -152,13 +157,13 @@
     color: #EF3B3A;
   } */
 
-  body {
-    background: #76b852;
-    /* fallback for old browsers */
-    background: rgb(141, 194, 111);
-    background: linear-gradient(90deg, rgba(141, 194, 111, 1) 0%, rgba(118, 184, 82, 1) 50%);
-    font-family: "Roboto", sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
+    body {
+        background: #76b852;
+        /* fallback for old browsers */
+        background: rgb(141, 194, 111);
+        background: linear-gradient(90deg, rgba(141, 194, 111, 1) 0%, rgba(118, 184, 82, 1) 50%);
+        font-family: "Roboto", sans-serif;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
 </style>
