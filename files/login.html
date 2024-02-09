@@ -13,7 +13,7 @@
   <div class="login-page">
     <div class="form">
       <form class="login-form">
-        <input type="email" id="user" placeholder="username" />
+        <input type="email" id="user-email" placeholder="username" />
         <input type="current-password" id="password" placeholder="password" />
         <button id="signin">login</button>
         <p class="message">Not registered? <a href="/files/signup.html">Create an account</a></p>
@@ -27,7 +27,7 @@
     document.querySelector('#signin').addEventListener('click', login1);
     function login1(event) {
         event.preventDefault();
-        let email=document.getElementById("user").value
+        let email=document.getElementById("user-email").value
         let password=document.getElementById("password").value
         login(email, password);
     }

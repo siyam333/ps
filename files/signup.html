@@ -13,9 +13,9 @@
     <div class="login-page">
         <div class="form">
             <form class="register-form">
-                <input type="text"   placeholder="name" />
+                <input type="text" id="name"  placeholder="name" />
                 <input type="text" id="username" placeholder="email address" />
-                <input type="number" placeholder="Phone number" />
+                <input type="number" id="ph_no" placeholder="Phone number" />
                 <input type="current-password" id="pass" placeholder="password" />
 
                 <button id="signup">create</button>
@@ -32,7 +32,9 @@
             event.preventDefault();
             let email=document.getElementById("username").value
             let password=document.getElementById("pass").value
-            create(email, password);
+            let name=document.getElementById("name").value
+            let ph_no=document.getElementById("ph_no").value
+            create(email, password, name, ph_no);
         }
         
     </script>
