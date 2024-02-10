@@ -8,11 +8,13 @@
         
         document.getElementById("register").addEventListener("click", verify);
         function verify(){
-            console.log(glogin);
-            if(glogin){
-                alert("You are already logged in");
-            }else{
-                alert("You are not logged in");
+            if(localStorage.getItem("state") == "true"){
+                //payment gateway
+                //window.location.href = "/files/register.html";
+            }
+            else{
+                alert("Please login to register");
+                window.location.href = "/files/login.html";
             }
         }
     </script>

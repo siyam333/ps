@@ -1,17 +1,31 @@
 import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { collection, setDoc ,getDoc,doc,getFirestore} from "firebase/firestore";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword,onAuthStateChanged } from "firebase/auth";
+import { collection, setDoc, getDoc, doc, getFirestore } from "firebase/firestore";
 
+const BooleanStateModule = (() => {
+    let state = false; // Initial state
 
-export let globalVariables = {
-    gname: null,
-    gphone_number: null,
-    gevent_1: false,
-    gevent_2: false,
-    gevent_3: false,
-    gevent_4: false,
-}
-
+    return {
+        getState: () => state, // Method to get the current state
+        setState: (newState,name,ph_no,e1,e2,e3,e4) => { // Method to set the new state
+            state = newState;
+            localStorage.setItem('name', name);
+            localStorage.setItem('ph_no', ph_no);
+            localStorage.setItem('e1', e1);
+            localStorage.setItem('e2', e2);
+            localStorage.setItem('e3', e3);
+            localStorage.setItem('e4', e4);
+            localStorage.setItem('state', state);
+            // You can trigger any side effects or notifications here
+            console.log(`State changed to: ${state}`);
+        },
+        toggleState: () => { // Method to toggle the state
+            state = !state;
+            localStorage.setItem('state', state);
+            console.log(`State toggled to: ${state}`);
+        }
+    };
+})();
 
 
 const firebaseConfig = {
@@ -40,12 +54,12 @@ const db = getFirestore(app);
 export function create(email, password, name, phone_number) {
     createUserWithEmailAndPassword(auth, email, password, name, phone_number)
         .then(async (userCredential) => {
-            // Signed up 
+            
             const user = userCredential.user;
             try {
                 const userId = user.uid.replace(/\//g, "_");
                 console.log(userId)
-                const docRef = await setDoc(doc(collection(db, "user"), userId), {
+                await setDoc(doc(collection(db, "user"), userId), {
                     name: name,
                     phone_number: phone_number,
                     event_1: false,
@@ -69,31 +83,32 @@ export function create(email, password, name, phone_number) {
 
 
 export function login(email, password) {
-    const auth = getAuth();
-    signInWithEmailAndPassword(auth, email, password)
-        .then(async (userCredential) => {
-            // Signed in 
-            const user = userCredential.user;
-            const userId = user.uid.replace(/\//g, "_");
+    
+        const auth = getAuth();
+        signInWithEmailAndPassword(auth, email, password)
+            .then(async (userCredential) => {
 
-            const docRef = doc(db, "user", userId);
-            const docSnap = await getDoc(docRef);
+                const user = userCredential.user;
+                const userId = user.uid.replace(/\//g, "_");
 
-            if (docSnap.exists()) {
-                console.log("Document data:", docSnap.data());
-                // console.log(docSnap.data().name);
-                // console.log(docSnap.data().phone_number);
-            } else {
-                // doc.data() will be undefined in this case
-                console.log("No such document!");
-            }
+                const docRef = doc(db, "user", userId);
+                const docSnap = await getDoc(docRef);
 
-            //window.location.href = "/index.html";
+                if (docSnap.exists()) {
+                    console.log("Document data:", docSnap.data());
+                    BooleanStateModule.setState(true, docSnap.data().name, docSnap.data().phone_number, docSnap.data().event_1, docSnap.data().event_2, docSnap.data().event_3, docSnap.data().event_4);
+                    
+                } else {
+                    console.log("No such document!");
+                }
 
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            alert(errorMessage)
-        });
+               window.location.href = "/index.html";
+
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                alert(errorMessage)
+    });
+    
 }

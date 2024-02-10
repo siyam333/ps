@@ -4,46 +4,67 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>event</title>
-  <script type="module">
-    import {globalVariables} from "/firebase.js";
-  </script>
+  <title>home</title>
+
 </head>
 
 <body>
+  <header id="state"> <a href="/files/login.html" target="_parent" rel="noreferrer">login/signup</a> </header>
+  <div class="box"><a href="/files/e1.html">e1</a></div>
+  <div class="box"><a href="">e2</a></div>
+  <div class="box"><a href="">e3</a></div>
+  <div class="box"><a href="">e4</a></div>
 
-  <head>
-    <style>
-      body {
-        margin: 0;
-        padding: 0;
-        overflow-x: hidden;
-      }
-
-      header {
-        height: 3em;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        left: 1em;
-      }
-
-      .box {
-        width: 10em;
-        height: 10em;
-        background-color: gray;
-        margin: 10px;
-        padding: 0;
-      }
-    </style>
-  </head>
-
-  <body>
-    <header> <a href="/files/login.html" target="_parent" rel="noreferrer">login/signup</a> </header>
-    <div class="box"><a href="/files/e1.html">e1</a></div>
-    <div class="box"><a href="">e2</a></div>
-    <div class="box"><a href="">e3</a></div>
-    <div class="box"><a href="">e4</a></div>
-  </body>
 </body>
+
+
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+
+  header {
+    height: 3em;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    left: 1em;
+  }
+
+  .box {
+    width: 10em;
+    height: 10em;
+    background-color: gray;
+    margin: 10px;
+    padding: 0;
+  }
+</style>
+<script type="module" src="./firebase.js"></script>
+
+
+<script type="module">
+  if (localStorage.getItem("state") == "true") {
+    document.getElementById("state").innerHTML = `<button id="logout">logout</button>`
+  }
+  else {
+    document.getElementById("state").innerHTML = `<a  href="/files/login.html" target="_parent" rel="noreferrer">login/signup</a>`
+  }
+
+  document.getElementById("logout").addEventListener("click", () => {
+    localStorage.setItem('name', null);
+    localStorage.setItem('ph_no', null);
+    localStorage.setItem('e1', null);
+    localStorage.setItem('e2', null);
+    localStorage.setItem('e3', null);
+    localStorage.setItem('e4', null);
+    localStorage.setItem('state', false);
+    document.getElementById("state").innerHTML = `<a  href="/files/login.html" target="_parent" rel="noreferrer">login/signup</a>`
+  })
+
+
+</script>
+
 </html>
