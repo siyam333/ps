@@ -16,21 +16,48 @@
         <input type="email" id="user-email" placeholder="username" />
         <input type="current-password" id="password" placeholder="password" />
         <button id="signin">login</button>
-        <p class="message">Not registered? <a href="/files/signup.html">Create an account</a></p>
+        <p class="message">Not registered? <a href="/signup/signup.html">Create an account</a></p>
       </form>
     </div>
   </div>
 
   <script type="module">
-    import { login } from "../firebase.js"
-
     document.querySelector('#signin').addEventListener('click', login1);
     async function login1(event) {
       event.preventDefault();
       let email = document.getElementById("user-email").value;
       let password = document.getElementById("password").value;
-      login(email, password);
+      try {
+        const response = await fetch('http://localhost:3000/api/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ email, password })
+        });
+
+        if (response.ok) {
+          // Authentication successful, redirect or display success message
+          const responseData = await response.json(); // Parse JSON response
+          const userId = responseData.user.uid; // Access user ID from response
+          console.log('User ID:', userId);
+          localStorage.setItem('name', responseData.name);
+          localStorage.setItem('ph_no', responseData.phone_number);
+          localStorage.setItem('e1', responseData.event_1);
+          localStorage.setItem('e2', responseData.event_2);
+          localStorage.setItem('e3', responseData.event_3);
+          localStorage.setItem('e4', responseData.event_4);
+          localStorage.setItem('state', responseData.state);
+          window.location.href = '../index.html';
+        } else {
+          // Authentication failed, handle error
+          const errorMessage = await response.text();
+          console.error('Authentication failed:', errorMessage);
+        }
+      } catch (error) {
+        console.error('Error:', error);
       }
+    }
 
 
   </script>

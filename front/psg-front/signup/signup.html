@@ -6,37 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    
+
 </head>
 
 <body>
     <div class="login-page">
         <div class="form">
             <form class="register-form">
-                <input type="text" id="name"  placeholder="name" />
+                <input type="text" id="name" placeholder="name" />
                 <input type="text" id="username" placeholder="email address" />
                 <input type="number" id="ph_no" placeholder="Phone number" />
                 <input type="current-password" id="pass" placeholder="password" />
 
                 <button id="signup">create</button>
-                <p class="message">Already registered? <a href="./login.html">Log In</a></p>
+                <p class="message">Already registered? <a href="../login/login.html">Log In</a></p>
             </form>
         </div>
     </div>
 
     <script type="module">
-        import {create} from "../firebase.js"
+
 
         document.querySelector('#signup').addEventListener('click', create1);
-        function create1(event) {
+        async function create1(event) {
             event.preventDefault();
-            let email=document.getElementById("username").value
-            let password=document.getElementById("pass").value
-            let name=document.getElementById("name").value
-            let ph_no=document.getElementById("ph_no").value
-            create(email, password, name, ph_no);
+            let email = document.getElementById("username").value
+            let password = document.getElementById("pass").value
+            let name = document.getElementById("name").value
+            let ph_no = document.getElementById("ph_no").value
+            try {
+                const response = await fetch('http://localhost:3000/api/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ email, password, name, ph_no })
+                });
+
+                if (response.ok) {
+                    // Authentication successful, redirect or display success message
+                    const responseData = await response.json(); // Parse JSON response
+                    const userId = responseData.user.uid; // Access user ID from response
+                    
+
+
+                    console.log('User ID:', userId);
+                    window.location.href = '../login/login.html';
+                } else {
+                    // Authentication failed, handle error
+                    const errorMessage = await response.text();
+                    console.error('Authentication failed:', errorMessage);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+            }
         }
-        
+
     </script>
 </body>
 
@@ -65,7 +90,7 @@
         box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
     }
 
-   
+
 
     body {
         background: #76b852;

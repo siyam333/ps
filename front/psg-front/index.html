@@ -9,8 +9,8 @@
 </head>
 
 <body>
-  <header id="state"> <a href="/files/login.html" target="_parent" rel="noreferrer">login/signup</a> </header>
-  <div class="box"><a href="/files/e1.html">e1</a></div>
+  <header id="state"> <a href="./login/login.html" target="_parent" rel="noreferrer">login/signup</a> </header>
+  <div class="box"><a href="/events/e1.html">e1</a></div>
   <div class="box"><a href="">e2</a></div>
   <div class="box"><a href="">e3</a></div>
   <div class="box"><a href="">e4</a></div>
@@ -42,7 +42,7 @@
     padding: 0;
   }
 </style>
-<script type="module" src="./firebase.js"></script>
+
 
 
 <script type="module">
@@ -50,7 +50,7 @@
     document.getElementById("state").innerHTML = `<button id="logout">logout</button>`
   }
   else {
-    document.getElementById("state").innerHTML = `<a  href="/files/login.html" target="_parent" rel="noreferrer">login/signup</a>`
+    document.getElementById("state").innerHTML = `<a  href="/login/login.html" target="_parent" rel="noreferrer">login/signup</a>`
   }
 
   document.getElementById("logout").addEventListener("click", () => {
@@ -61,7 +61,7 @@
     localStorage.setItem('e3', null);
     localStorage.setItem('e4', null);
     localStorage.setItem('state', false);
-    document.getElementById("state").innerHTML = `<a  href="/files/login.html" target="_parent" rel="noreferrer">login/signup</a>`
+    document.getElementById("state").innerHTML = `<a  href="/login/login.html" target="_parent" rel="noreferrer">login/signup</a>`
   })
 
 
