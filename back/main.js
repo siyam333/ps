@@ -8,15 +8,13 @@ const { collection, setDoc, getDoc, doc, getFirestore } = require('firebase/fire
 
 const firebaseConfig = {
     apiKey: "AIzaSyDh_BxjN6RSG7BcxV2cP6jUclmtz1eBdOM",
-    authDomain: "tz24-ae060.firebaseapp.com",
-    projectId: "tz24-ae060",
-    storageBucket: "tz24-ae060.appspot.com",
-    messagingSenderId: "798031507321",
-    appId: "1:798031507321:web:f109ea1fe92af5393909a8",
-    measurementId: "G-2XPXYHETML"
-
-
-    
+  authDomain: "tz24-ae060.firebaseapp.com",
+  databaseURL: "https://tz24-ae060-default-rtdb.firebaseio.com/",
+  projectId: "tz24-ae060",
+  storageBucket: "tz24-ae060.appspot.com",
+  messagingSenderId: "798031507321",
+  appId: "1:798031507321:web:f109ea1fe92af5393909a8",
+  measurementId: "G-2XPXYHETML"    
 };
 
 
