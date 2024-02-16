@@ -1,6 +1,6 @@
 cd back
 
-npm init
+npm install
 
 node main.js
 
@@ -11,6 +11,6 @@ cd front
 
 cd psg-front
 
-npm init
+npm install
 
 yarn dev
